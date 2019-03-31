@@ -4,25 +4,32 @@
 %}
 /*Rules*/
 Variable       [a-z][a-z0-9]*
-Float    [0-9]+"."[0-9]+
+Float    ([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?
+Numerico {int}|{Float}
 int [0-9]+
 char [a-zA-Z]+
 Operator "+"|"-"|"*"|"/"|"^" 
-Comparadores ["=="|"<="|">="|"!="|"<"|">"]
-Logicos ["&&"|"||"]
+Comparadores "=="|"<="|">="|"!="|"<"|">"
+Logicos "&&"|"||"
 cc "\""
 Varchar {Variable}("="{cc}{char}{cc})?
 Varint {Variable}("="{int})?
 Varfloat {Variable}("="{Float})?
+Comparandonum {Numerico}{Comparadores}{Numerico}
+Comparandochar {char}{Comparadores}{char}
+Comparador ("if"|"while")"("{Comparandonum}(" "{Logicos}" "{Comparandonum})*"){"\n*"}"
+Comparadorchar ("if"|"while")"("{Comparandochar}(" "{Logicos}" "{Comparandochar})*")"
 Inout ("printf"|"scanf")"("{cc}{char}{cc}","{Variable}");"
 Type "char "{Varchar}(","{Varchar})*";"|"int "{Varint}(","{Varint})*";"|"float "{Varfloat}(","{Varfloat})*";"
-
+comment ^[ \t]*"/*".*"*/"[ \t]*\n
 %{
     char oper ;
 %}
 
+
 %%
 
+{Comparador} {printf("Correcto HP=%s ",yytext);} 
 {Operator} {
     oper=(char)*yytext;
     eval();
