@@ -1,6 +1,8 @@
 %{
 #include<stdio.h>
 %}
+ID       [a-z][a-z0-9]*
+Operator ["+"|"-"|"*"|"/"] 
 
 %%
 "*" printf("Op-mult= %s ",yytext);
@@ -8,25 +10,26 @@
 "-" printf("Op-sust= %s ",yytext);
 "/" printf("Op-div= %s ",yytext);
 "^" printf("Op-exp= %s ",yytext);
-"<--" printf("Op-asign= %s ",yytext);
+"=" printf("Op-asign= %s ",yytext);
 "(" printf("Parent-a= %s ",yytext);
 ")" printf("Parent-c= %s ",yytext);
 "," printf("Coma= %s ",yytext);
-"int" printf("INT Id= %s ",yytext);
-"char" printf("CHAR Id= %s ",yytext);
-"float" printf("FLOAT Id= %s ",yytext);
-"=" printf("Igual= %s ",yytext);
+"int" printf("INT Id=",yytext);
+"char" printf("CHAR Id=",yytext);
+"float" printf("FLOAT Id=",yytext);
+"==" printf("igual= %s ",yytext);
 "<=" printf("Menor-igual= %s ",yytext);
 ">=" printf("Mayor-igual= %s ",yytext);
-"<>" printf("Diferente= %s ",yytext);
+"!=" printf("Diferente= %s ",yytext);
 "<" printf("Menor= %s ",yytext);
 ">" printf("Mayor= %s ",yytext);
-" "*.y." "* printf("Op-y= %s ",yytext);
-" "*.o." "* printf("Op-o= %s ",yytext);
-" "*.~." "* printf("Op-no= %s ",yytext);
-[a-zA-Z]  printf("%c",yytext[0]- 32);
+" && " printf("Op-y= %s ",yytext);
+" || " printf("Op-o= %s ",yytext);
+"!"{ID} printf("Op-no= %s ",yytext);
+"{" printf("Inicio= %s ",yytext);
+"}" printf("Fin= %s ",yytext);
 "/*"(.|\n)*?"*/"  /* no action: ignore multiline comments */
-
+[a-zA-Z] printf("%c",yytext[0]- 32);
 %%
 
 int main(void){
