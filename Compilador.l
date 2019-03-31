@@ -1,38 +1,50 @@
 %{
 #include<stdio.h>
+
 %}
-ID       [a-z][a-z0-9]*
-Operator ["+"|"-"|"*"|"/"] 
+/*Rules*/
+Variable       [a-z][a-z0-9]*
+Float    [0-9]+"."[0-9]+
+int [0-9]+
+char [a-zA-Z]+
+Operator "+"|"-"|"*"|"/"|"^" 
+Comparadores ["=="|"<="|">="|"!="|"<"|">"]
+Logicos ["&&"|"||"]
+cc "\""
+Varchar {Variable}("="{cc}{char}{cc})?
+Varint {Variable}("="{int})?
+Varfloat {Variable}("="{Float})?
+Type "char "{Varchar}(","{Varchar})*";"|"int "{Varint}(","{Varint})*";"|"float "{Varfloat}(","{Varfloat})*";"
+
+%{
+    char oper ;
+%}
 
 %%
-"*" printf("Op-mult= %s ",yytext);
-"+" printf("Op-sum= %s ",yytext);
-"-" printf("Op-sust= %s ",yytext);
-"/" printf("Op-div= %s ",yytext);
-"^" printf("Op-exp= %s ",yytext);
-"=" printf("Op-asign= %s ",yytext);
-"(" printf("Parent-a= %s ",yytext);
-")" printf("Parent-c= %s ",yytext);
-"," printf("Coma= %s ",yytext);
-"int" printf("INT Id=",yytext);
-"char" printf("CHAR Id=",yytext);
-"float" printf("FLOAT Id=",yytext);
-"==" printf("igual= %s ",yytext);
-"<=" printf("Menor-igual= %s ",yytext);
-">=" printf("Mayor-igual= %s ",yytext);
-"!=" printf("Diferente= %s ",yytext);
-"<" printf("Menor= %s ",yytext);
-">" printf("Mayor= %s ",yytext);
-" && " printf("Op-y= %s ",yytext);
-" || " printf("Op-o= %s ",yytext);
-"!"{ID} printf("Op-no= %s ",yytext);
-"{" printf("Inicio= %s ",yytext);
-"}" printf("Fin= %s ",yytext);
-"/*"(.|\n)*?"*/"  /* no action: ignore multiline comments */
-[a-zA-Z] printf("%c",yytext[0]- 32);
+
+{Operator} {
+    oper=(char)*yytext;
+    switch(oper)
+    {
+        case '+':printf("Op-sum= %s ",yytext);
+        break;
+        case '-':printf("Op-sust= %s ",yytext);
+        break;
+        case '*':printf("Op-mult= %s ",yytext);
+        break;
+        case '/':printf("Op-div= %s ",yytext);
+        break;
+    }
+}
+{Type} {printf("Correcto HP=%s ",yytext);
+}
+
 %%
 
-int main(void){
-    yylex();
-    return 0;
+
+int yylex(void);
+
+void main(void)
+{
+        yylex();
 }
