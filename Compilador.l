@@ -11,7 +11,6 @@ Float   ([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?
 int   [0-9]+
 char   .*
 Operator   "+"|"-"|"*"|"/"|"^" 
-Comparadores   "="|"=="|"<="|">="|"!="|"<"|">"
 Logicos   "&&"|"||"|"~"
 cc   "\""
 Varchar   {cc}{char}{cc}
@@ -113,12 +112,12 @@ cadena = malloc(b);
         i++;
      }
 
-  add_word(cadena);
+  add_word(cadena,0);
   fprintf(yyout,"Id= %s ",cadena);
 }
 
 {Variable} {
-if(add_word(yytext)==0){
+if(add_word(yytext,0)==0){
     fprintf(yyout,"Id= %s ",yytext);
 } else {
    fprintf(yyout,"Unknown Word= %s ",yytext);  
@@ -152,7 +151,11 @@ return 1;
 int main()
 {   
    extern FILE *yyin, *yyout; 
-	yyin = fopen("Input.txt", "r"); 
+   char file_name[25];
+   printf("Enter name of a file you wish to see\n");
+   gets(file_name);
+ 
+	yyin = fopen(file_name, "r"); 
     if(yyin == NULL) /* open failed */{ 
      fprintf(yyout,"error");
      exit(1);
@@ -163,9 +166,13 @@ int main()
      exit(1);
      }
 	yylex(); 
+    fprintf(yyout,"\nTabla de Identificadores \n");
+    add_word("",1);
+    printf("Acabo");
 	return 0; 
 } 
 /* define a linked list of words and types */
+
 struct word {
       char *word_name;
       struct word *next;
@@ -174,9 +181,9 @@ struct word *word_list; /* first element in word list */
 extern void *malloc() ;
 
 int 
-add_word(char *word)
+add_word(char *word,int a)
 {      struct word *wp;
-      if(lookup_word(word) != 0) {
+      if(lookup_word(word,a) != 0) {
       return 0;      
       }      
     /* word not there, allocate a new entry and link it on the list */      
@@ -190,14 +197,21 @@ add_word(char *word)
     }
 
     int
-    lookup_word(char *word){
+    lookup_word(char *word,int a){
     struct word *wp = word_list;
     
     /* search down the list looking for the word */
       for(; wp; wp = wp->next) {
+          int jj=0;
+        if(a==1){
+            fprintf(yyout,"Id= %s; ",wp->word_name);
+            if(jj==5){
+                fprintf(yyout,"\n");
+                jj=0;
+            }
+        }    
         if(strcmp(wp->word_name, word) == 0) 
         return 1;
        }      
        return 0;      /* not found */
 }
-
