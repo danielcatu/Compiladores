@@ -3,4 +3,8 @@ lex\.yy\.c
 
 a\.out
 
-lista.txt
+salida.txt
+
+input.txt
+
+
