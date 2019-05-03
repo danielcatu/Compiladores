@@ -4,22 +4,25 @@
 %}
 
 /*Rules*/
-Declaracion {Token}" "*[a-z][a-z0-9]*
+Declaracion {Token}" "+[a-z][a-z0-9]*
 Token   "int"|"float"|"char"
 Variable [a-z][a-z0-9]*
 Float   ([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)? 
-int   [0-9]+
+int   ([0-9]+)([eE][-+]?[0-9]+)? 
 char   .*
 Operator   "+"|"-"|"*"|"/"|"^" 
 Logicos   "&&"|"||"|"~"
 cc   "\""
 Varchar   {cc}{char}{cc}
-Clave   "if"|"else"|"for"|"while"|"do"|"switch"|"scanf"|"printf"|"main"|"void"
+Clave   "if"|"else"|"for"|"while"|"do"|"switch"|"scanf"|"printf"|"main"|"void"|case" "+[1-9][0-9]+?:
 Ifin   "{"|"}"
 Simbolos   "("|")"|","|";"
 
 %x C_COMMENT
 %%
+
+"//"{char} {}
+
 " && " fprintf(yyout,"Op-and= %s ",yytext);
 " || " fprintf(yyout,"Op-or= %s ",yytext);
 "~"  fprintf(yyout,"Op-no= %s ",yytext);

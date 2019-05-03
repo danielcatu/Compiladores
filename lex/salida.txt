@@ -1,0 +1,51 @@
+VOID MAIN Parent-a= ( Parent-c= ) 
+Inicio= { 
+
+SCANF Parent-a= ( Cte cadena= "%d" Coma= , Unknown Word= g2 Parent-c= ) Punto-coma= ; 
+
+FOR Parent-a= ( Unknown Word= gm Op-asig= = Cte entera= 0 Punto-coma= ; Id= gm Menor= < Cte entera= 100 Punto-coma= ; Id= gm Op-asig= = Id= gm Op-sum= + Op-sum= + Parent-c= ) 
+Inicio= { 
+PRINTF Parent-a= ( Cte cadena= "Mi edad: %d" Coma= , Unknown Word= td Parent-c= ) Punto-coma= ; 
+Unknown Word= i Op-asig= = Cte entera= 2 Unknown Word= ja Punto-coma= ; 
+Fin= } 
+
+SWITCH Parent-a= ( Unknown Word= t Parent-c= ) 
+CASE 1: 
+Id= g2 Op-asig= = Cte entera= 0 Punto-coma= ; 
+
+CASE 2: 
+Unknown Word= g4 Op-asig= = Cte entera= 23 Unknown Word= b Punto-coma= ; 
+
+FOR Parent-a= ( Id= i Op-asig= = Cte entera= 2 Punto-coma= ; Id= i Mayor-igual= >= Cte entera= 0 Punto-coma= ; Op-sust= - Op-sust= - Id= i Parent-c= ) 
+Inicio= { 
+SCANF Parent-a= ( Cte cadena= "%d" Coma= , Unknown Word= jaime Parent-c= ) Punto-coma= ; 
+PRINTF Parent-a= ( Cte cadena= "%d" Coma= , Id= i Parent-c= ) Punto-coma= ; 	
+Fin= } 
+
+WHILE Parent-a= ( Unknown Word= sw igual= == Cte entera= 0 Op-and=  &&  Id= gm igual= == Cte entera= 0 Parent-c= ) 
+Inicio= { 
+Id= jaime Op-asig= = Unknown Word= flaquita Op-div= / Cte entera= 10 Op-mult= * Cte real= 25.43 Punto-coma= ; 
+
+IF Parent-a= ( Id= flaquita Diferente= != Cte entera= 2 Parent-c= ) 
+Inicio= { 
+Id= sw Op-asig= = Cte entera= 1 Punto-coma= ; 
+Fin= } 
+Id= i Op-asig= = Id= i Op-sum= + Cte real= 14.65e6 
+Fin= } 
+
+
+
+
+
+IF Id= jaime 
+Inicio= { 
+Unknown Word= g3 Op-asig= = Id= g2 Op-sum= + Cte entera= 4e32 Punto-coma= ; 
+Fin= } 
+ELSE 
+Inicio= { 
+Unknown Word= df Punto-coma= ; 	
+Fin= } 
+
+Fin= } 
+Tabla de Identificadores 
+Id= df; Id= g3; Id= flaquita; Id= sw; Id= jaime; Id= b; Id= g4; Id= t; Id= ja; Id= i; Id= td; Id= gm; Id= g2; 
