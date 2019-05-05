@@ -4,7 +4,7 @@ con las operaciones básicas de suma, resta, producto, division y
 trigonometricas como el seno y el coseno */
 #include <stdio.h>
 #include <stdlib.h>
-#include "sintactico.tab.h"
+#include "y.tab.h"
 int nlines=0;
 %}
 %option noyywrap
