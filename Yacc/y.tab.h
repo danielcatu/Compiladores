@@ -83,25 +83,28 @@
      CONST = 299,
      VOLATILE = 300,
      VOID = 301,
-     BOOL = 302,
-     COMPLEX = 303,
-     IMAGINARY = 304,
-     STRUCT = 305,
-     UNION = 306,
-     ENUM = 307,
-     ELLIPSIS = 308,
-     CASE = 309,
-     DEFAULT = 310,
-     IF = 311,
-     ELSE = 312,
-     SWITCH = 313,
-     WHILE = 314,
-     DO = 315,
-     FOR = 316,
-     GOTO = 317,
-     CONTINUE = 318,
-     BREAK = 319,
-     RETURN = 320
+     CHARVALUE = 302,
+     FLOATVALUE = 303,
+     INTVALUE = 304,
+     BOOL = 305,
+     COMPLEX = 306,
+     IMAGINARY = 307,
+     STRUCT = 308,
+     UNION = 309,
+     ENUM = 310,
+     ELLIPSIS = 311,
+     CASE = 312,
+     DEFAULT = 313,
+     IF = 314,
+     ELSE = 315,
+     SWITCH = 316,
+     WHILE = 317,
+     DO = 318,
+     FOR = 319,
+     GOTO = 320,
+     CONTINUE = 321,
+     BREAK = 322,
+     RETURN = 323
    };
 #endif
 /* Tokens.  */
@@ -149,38 +152,34 @@
 #define CONST 299
 #define VOLATILE 300
 #define VOID 301
-#define BOOL 302
-#define COMPLEX 303
-#define IMAGINARY 304
-#define STRUCT 305
-#define UNION 306
-#define ENUM 307
-#define ELLIPSIS 308
-#define CASE 309
-#define DEFAULT 310
-#define IF 311
-#define ELSE 312
-#define SWITCH 313
-#define WHILE 314
-#define DO 315
-#define FOR 316
-#define GOTO 317
-#define CONTINUE 318
-#define BREAK 319
-#define RETURN 320
+#define CHARVALUE 302
+#define FLOATVALUE 303
+#define INTVALUE 304
+#define BOOL 305
+#define COMPLEX 306
+#define IMAGINARY 307
+#define STRUCT 308
+#define UNION 309
+#define ENUM 310
+#define ELLIPSIS 311
+#define CASE 312
+#define DEFAULT 313
+#define IF 314
+#define ELSE 315
+#define SWITCH 316
+#define WHILE 317
+#define DO 318
+#define FOR 319
+#define GOTO 320
+#define CONTINUE 321
+#define BREAK 322
+#define RETURN 323
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE
-#line 12 "sintactico.y"
-{
-float real;
-}
-/* Line 1529 of yacc.c.  */
-#line 183 "y.tab.h"
-	YYSTYPE;
+typedef int YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
 # define YYSTYPE_IS_TRIVIAL 1

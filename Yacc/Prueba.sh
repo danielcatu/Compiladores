@@ -1,5 +1,6 @@
 #!/bin/bash
 clear
-yacc -d sintactico.y
-flex lexico.l
+yacc -d Comp.y
+flex Comp.l
 cc lex.yy.c y.tab.c
+./a.out
