@@ -89,22 +89,23 @@
      BOOL = 305,
      COMPLEX = 306,
      IMAGINARY = 307,
-     STRUCT = 308,
-     UNION = 309,
-     ENUM = 310,
-     ELLIPSIS = 311,
-     CASE = 312,
-     DEFAULT = 313,
-     IF = 314,
-     ELSE = 315,
-     SWITCH = 316,
-     WHILE = 317,
-     DO = 318,
-     FOR = 319,
-     GOTO = 320,
-     CONTINUE = 321,
-     BREAK = 322,
-     RETURN = 323
+     SALTO = 308,
+     STRUCT = 309,
+     UNION = 310,
+     ENUM = 311,
+     ELLIPSIS = 312,
+     CASE = 313,
+     DEFAULT = 314,
+     IF = 315,
+     ELSE = 316,
+     SWITCH = 317,
+     WHILE = 318,
+     DO = 319,
+     FOR = 320,
+     GOTO = 321,
+     CONTINUE = 322,
+     BREAK = 323,
+     RETURN = 324
    };
 #endif
 /* Tokens.  */
@@ -158,22 +159,23 @@
 #define BOOL 305
 #define COMPLEX 306
 #define IMAGINARY 307
-#define STRUCT 308
-#define UNION 309
-#define ENUM 310
-#define ELLIPSIS 311
-#define CASE 312
-#define DEFAULT 313
-#define IF 314
-#define ELSE 315
-#define SWITCH 316
-#define WHILE 317
-#define DO 318
-#define FOR 319
-#define GOTO 320
-#define CONTINUE 321
-#define BREAK 322
-#define RETURN 323
+#define SALTO 308
+#define STRUCT 309
+#define UNION 310
+#define ENUM 311
+#define ELLIPSIS 312
+#define CASE 313
+#define DEFAULT 314
+#define IF 315
+#define ELSE 316
+#define SWITCH 317
+#define WHILE 318
+#define DO 319
+#define FOR 320
+#define GOTO 321
+#define CONTINUE 322
+#define BREAK 323
+#define RETURN 324
 
 
 
