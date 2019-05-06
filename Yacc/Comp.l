@@ -16,7 +16,7 @@ void count(void);
 %x C_COMMENT
 %%
 "//"[^\n]*              { count();}
-"/*"[^*/]*"*/"        { count();}
+"/*"[^*/]*"*/"      { count();}//NUEVA COMENTARIO
 
 
 "auto"			{ count(); return(AUTO); }
@@ -56,14 +56,16 @@ void count(void);
 "void"			{ count(); return(VOID); }
 "volatile"		{ count(); return(VOLATILE); }
 "while"			{ count(); return(WHILE); }
+"printf"		{ count(); return(PRINTF); }
+"scanf"			{ count(); return(SCANF); }
+
 
 {L}({L}|{D})*		{ count(); return(IDENTIFIER); }
 
 0[xX]{H}+{IS}?		{ count(); return(CONSTANT); }
 0[0-7]*{IS}?		{ count(); return(CONSTANT); }
 [1-9]{D}*{IS}?		{ count(); return(CONSTANT); }
-'(\\.|[^\\'\n])+'	{ count(); return(CHARVALUE); }
-
+'(\\.|[^\\'\n])+'|"(\\.|[^\\'\n])+"	{ count(); return(CHARVALUE); }
 {D}+{E}{FS}?		{ count(); return(CONSTANT); }
 {D}*"."{D}+{E}?{FS}?	{ count(); return(CONSTANT); }
 {D}+"."{D}*{E}?{FS}?	{ count(); return(CONSTANT); }
@@ -120,7 +122,6 @@ L?\"(\\.|[^\\"\n])*\"	{ count(); return(STRING_LITERAL); }
 "^"			{ count(); return('^'); }
 "|"			{ count(); return('|'); }
 "?"			{ count(); return('?'); }
-[\n] 		{ return(SALTO);}
 [ \t\v\n\f]		{ count(); }
 .			{ /* Add code to complain about unmatched characters */ }
 

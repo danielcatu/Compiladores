@@ -10,7 +10,8 @@
 %token BOOL COMPLEX IMAGINARY SALTO
 %token STRUCT UNION ENUM ELLIPSIS
 
-%token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
+%token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN DO PRINTF SCANF
+%token POD POF POC
 
 %start MONDA
 
@@ -19,17 +20,32 @@ extern int column;
 %}
 
 %%
-MONDA: MINIMONDA | MONDA MINIMONDA;
+MONDA: MULTIMONDA | MONDA MULTIMONDA |;
 
-MINIMONDA: Declaracion | Condicionals | SALTO {column ++;};
+MULTIMONDA: Declaracion | Condicionals | ESfline | Declaracion SALTO {column++;};
 
-Condicionals: Validcon '('Condicion')''{''}' | Validcon '('Condicion')''{'MONDA'}';
-Validcon: WHILE | IF ;
+Condicionals:Whileline | Ifline | Doesline | For;
+Whileline: WHILE '('Condicion')''{'MONDA'}';
+Ifline: IF '('Condicion')''{'MONDA'}'| IF '('Condicion')''{'MONDA'}'ELSE'{'MONDA'}';
+Doesline: DO '{'MONDA'}' WHILE '('Condicion')';
+Shiwtchline: SWITCH '('IDENTIFIER')''{'Caseline'}';
+For:FOR '(' AUX IDENTIFIER '=' HYDRA ';' IDENTIFIER Cond_type HYDRA ';' IDENTIFIER PACK ')' '{'MONDA'}';
+HYDRA: IDENTIFIER | INTVALUE;
+AUX: INT | ;
+PACK: INC_OP | DEC_OP | '+' HYDRA | '-' HYDRA;
+Caseline: Caseint | CaseChar | Casefloat | DEFAULT ':' | DEFAULT ':' BREAK ';';
+Caseint: Caseint |CASE INTVALUE ':' MONDA BREAK';';
+CaseChar: Caseint |CASE CHARVALUE ':' MONDA BREAK';';
+Casefloat: Caseint |CASE FLOATVALUE ':' MONDA BREAK';';
 
-Condicion: Condicion Cond_Mod Condicion | "~(" Condicion ')' | Posco Cond_type Posco;
+Condicion: Condicion Cond_Mod Condicion | '~(' Condicion ')' | Posco Cond_type Posco;
 Posco: IDENTIFIER | INTVALUE | CHARVALUE | FLOATVALUE;
 Cond_type: LE_OP | GE_OP | EQ_OP | NE_OP;
 Cond_Mod: OR_OP | AND_OP;
+
+ESF:PRINTF | SCANF ;
+ESfline:ESF'('Esfmod','Posco')'';' | ESF'('POD','INTVALUE')'';' | ESF'('POC','CHARVALUE')'';'|ESF'('POF','FLOATVALUE')'';';
+Esfmod: POD | POC | POF;
 
 Declaracion: Dechar | Deint | Defloat;
 Dechar:CHAR Dechar2';';
@@ -66,7 +82,7 @@ int main()
      }
 	yyparse(); 
     fprintf(yyout,"\nTabla de Identificadores \n");
-    printf("Acabo");
+    printf("Exitoooooooo..... PARA SERVIRTE \n");
     return 0;
 }
 

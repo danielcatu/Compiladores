@@ -15,7 +15,10 @@ hbjhbas
 
 
 */
-int a
-if(a == b){
+int a;
+if(a == b)
+{
+printf("%f",media);
+}else{
 
 }

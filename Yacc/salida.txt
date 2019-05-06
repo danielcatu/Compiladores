@@ -1,4 +1,6 @@
-int a;int b;/*
+int a;
+int b;
+/*
 
 
 habsdashd
@@ -12,5 +14,9 @@ hbjhbas
 
 
 
-*/int a
+*/
+int a;
+if(a == b)
+{
+printf("%f"
 Tabla de Identificadores 
