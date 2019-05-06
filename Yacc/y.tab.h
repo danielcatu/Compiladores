@@ -100,12 +100,12 @@
      ELSE = 316,
      SWITCH = 317,
      WHILE = 318,
-     DO = 319,
-     FOR = 320,
-     GOTO = 321,
-     CONTINUE = 322,
-     BREAK = 323,
-     RETURN = 324,
+     FOR = 319,
+     GOTO = 320,
+     CONTINUE = 321,
+     BREAK = 322,
+     RETURN = 323,
+     DO = 324,
      PRINTF = 325,
      SCANF = 326,
      POD = 327,
@@ -175,12 +175,12 @@
 #define ELSE 316
 #define SWITCH 317
 #define WHILE 318
-#define DO 319
-#define FOR 320
-#define GOTO 321
-#define CONTINUE 322
-#define BREAK 323
-#define RETURN 324
+#define FOR 319
+#define GOTO 320
+#define CONTINUE 321
+#define BREAK 322
+#define RETURN 323
+#define DO 324
 #define PRINTF 325
 #define SCANF 326
 #define POD 327

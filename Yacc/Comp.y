@@ -10,7 +10,7 @@
 %token BOOL COMPLEX IMAGINARY SALTO
 %token STRUCT UNION ENUM ELLIPSIS
 
-%token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN DO PRINTF SCANF
+%token CASE DEFAULT IF ELSE SWITCH WHILE FOR GOTO CONTINUE BREAK RETURN DO PRINTF SCANF
 %token POD POF POC
 
 %start MONDA
@@ -31,6 +31,8 @@ Doesline: DO '{'MONDA'}' WHILE '('Condicion')';
 Shiwtchline: SWITCH '('IDENTIFIER')''{'Caseline'}';
 For:FOR '(' AUX IDENTIFIER '=' HYDRA ';' IDENTIFIER Cond_type HYDRA ';' IDENTIFIER PACK ')' '{'MONDA'}';
 HYDRA: IDENTIFIER | INTVALUE;
+CHARDRA: IDENTIFIER | CHARVALUE;
+FLOATDRA: IDENTIFIER | FLOATVALUE;
 AUX: INT | ;
 PACK: INC_OP | DEC_OP | '+' HYDRA | '-' HYDRA;
 Caseline: Caseint | CaseChar | Casefloat | DEFAULT ':' | DEFAULT ':' BREAK ';';
@@ -44,8 +46,9 @@ Cond_type: LE_OP | GE_OP | EQ_OP | NE_OP;
 Cond_Mod: OR_OP | AND_OP;
 
 ESF:PRINTF | SCANF ;
-ESfline:ESF'('Esfmod','Posco')'';' | ESF'('POD','INTVALUE')'';' | ESF'('POC','CHARVALUE')'';'|ESF'('POF','FLOATVALUE')'';';
-Esfmod: POD | POC | POF;
+ESfline: ESF '(' POD ',' HYDRA ')' ';' | ESF '(' POC ',' CHARDRA ')' ';' | ESF '(' POF ',' FLOATDRA ')' ';';
+Indent:
+
 
 Declaracion: Dechar | Deint | Defloat;
 Dechar:CHAR Dechar2';';
@@ -54,7 +57,7 @@ Dechar3: IDENTIFIER '=' CHARVALUE | IDENTIFIER;
 Deint:INT Deint2';';
 Deint2:Deint3 | Deint3 ',' Deint2;
 Deint3: IDENTIFIER '=' INTVALUE | IDENTIFIER;
-Defloat:CHAR Defloat2';';
+Defloat:FLOAT Defloat2';';
 Defloat2:Defloat3 | Defloat3 ',' Defloat2;
 Defloat3: IDENTIFIER '=' FLOATVALUE | IDENTIFIER;
 

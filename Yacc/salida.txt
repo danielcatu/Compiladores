@@ -15,8 +15,9 @@ hbjhbas
 
 
 */
-int a;
-if(a == b)
-{
-printf("%f"
+int i,x;
+float media,media2;
+//media=0; // FALTA DETECTAR ESTO 
+
+scanf("%d"
 Tabla de Identificadores 

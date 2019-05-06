@@ -58,6 +58,8 @@ void count(void);
 "while"			{ count(); return(WHILE); }
 "printf"		{ count(); return(PRINTF); }
 "scanf"			{ count(); return(SCANF); }
+\""%f"\"			{ count(); return(POD); }
+
 
 
 {L}({L}|{D})*		{ count(); return(IDENTIFIER); }
