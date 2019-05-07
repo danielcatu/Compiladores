@@ -20,21 +20,21 @@ extern int column;
 %}
 
 %%
-MONDA: MULTIMONDA | MONDA MULTIMONDA |;
+MONDA: MULTIMONDA | MONDA MULTIMONDA |MONDA error|;
 
 MULTIMONDA: Declaracion | Condicionals | ESfline | Declaracion SALTO {column++;};
 
-Condicionals:Whileline | Ifline | Doesline | For;
+Condicionals:Whileline | Ifline | Doesline | Forline;
 Whileline: WHILE '('Condicion')''{'MONDA'}';
 Ifline: IF '('Condicion')''{'MONDA'}'| IF '('Condicion')''{'MONDA'}'ELSE'{'MONDA'}';
 Doesline: DO '{'MONDA'}' WHILE '('Condicion')';
 Shiwtchline: SWITCH '('IDENTIFIER')''{'Caseline'}';
-For:FOR '(' AUX IDENTIFIER '=' HYDRA ';' IDENTIFIER Cond_type HYDRA ';' IDENTIFIER PACK ')' '{'MONDA'}';
+Forline: FOR '(' AUXfor IDENTIFIER '=' HYDRA ';' IDENTIFIER Cond_type HYDRA ';' IDENTIFIER ForPACK ')' '{'MONDA'}';
 HYDRA: IDENTIFIER | INTVALUE;
 CHARDRA: IDENTIFIER | CHARVALUE;
 FLOATDRA: IDENTIFIER | FLOATVALUE;
-AUX: INT | ;
-PACK: INC_OP | DEC_OP | '+' HYDRA | '-' HYDRA;
+AUXfor: INT | ;
+ForPACK: INC_OP | DEC_OP | '+' HYDRA | '-' HYDRA;
 Caseline: Caseint | CaseChar | Casefloat | DEFAULT ':' | DEFAULT ':' BREAK ';';
 Caseint: Caseint |CASE INTVALUE ':' MONDA BREAK';';
 CaseChar: Caseint |CASE CHARVALUE ':' MONDA BREAK';';
@@ -42,13 +42,16 @@ Casefloat: Caseint |CASE FLOATVALUE ':' MONDA BREAK';';
 
 Condicion: Condicion Cond_Mod Condicion | '~(' Condicion ')' | Posco Cond_type Posco;
 Posco: IDENTIFIER | INTVALUE | CHARVALUE | FLOATVALUE;
-Cond_type: LE_OP | GE_OP | EQ_OP | NE_OP;
+Cond_type: LE_OP | GE_OP | EQ_OP | NE_OP | '<' | '>';
 Cond_Mod: OR_OP | AND_OP;
 
 ESF:PRINTF | SCANF ;
 ESfline: ESF '(' POD ',' HYDRA ')' ';' | ESF '(' POC ',' CHARDRA ')' ';' | ESF '(' POF ',' FLOATDRA ')' ';';
-Indent:
 
+Varuse:IDENTIFIER IDPACK;
+IDPACK: "++" | "--" | '=' IDENTIFIER | '=' OPERAR;
+OPERAR: OPERAR Operation OPERAR | '(' OPERAR ')' ;
+Operation: '+' | '-' | '/' | '*';
 
 Declaracion: Dechar | Deint | Defloat;
 Dechar:CHAR Dechar2';';
@@ -61,6 +64,7 @@ Defloat:FLOAT Defloat2';';
 Defloat2:Defloat3 | Defloat3 ',' Defloat2;
 Defloat3: IDENTIFIER '=' FLOATVALUE | IDENTIFIER;
 
+
 %%
 #include <stdio.h>
 
@@ -68,7 +72,7 @@ extern char yytext[];
 
 int main()
 {
-    extern FILE *yyin, *yyout; 
+   extern FILE *yyin, *yyout; 
    char file_name[25];
    printf("Enter name of a file you wish to see\n");
    gets(file_name);

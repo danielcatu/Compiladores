@@ -58,20 +58,21 @@ void count(void);
 "while"			{ count(); return(WHILE); }
 "printf"		{ count(); return(PRINTF); }
 "scanf"			{ count(); return(SCANF); }
-\""%f"\"			{ count(); return(POD); }
+\""%f"\"		{ count(); return(POF); }
+\""%c"\"		{ count(); return(POC); }
+\""%d"\"		{ count(); return(POD); }
 
 
 
 {L}({L}|{D})*		{ count(); return(IDENTIFIER); }
+'(\\.|[^\\'\n])+'|"(\\.|[^\\'\n])+"	{ count(); return(CHARVALUE); }
+{D}+{E}?			{ count(); return(INTVALUE); }
+{D}*"."{D}+{E}? 	{ count(); return(FLOATVALUE); }
 
+0[xX]{H}+{P}{FS}?	{ count(); return(CONSTANT); }
 0[xX]{H}+{IS}?		{ count(); return(CONSTANT); }
 0[0-7]*{IS}?		{ count(); return(CONSTANT); }
 [1-9]{D}*{IS}?		{ count(); return(CONSTANT); }
-'(\\.|[^\\'\n])+'|"(\\.|[^\\'\n])+"	{ count(); return(CHARVALUE); }
-{D}+{E}{FS}?		{ count(); return(CONSTANT); }
-{D}*"."{D}+{E}?{FS}?	{ count(); return(CONSTANT); }
-{D}+"."{D}*{E}?{FS}?	{ count(); return(CONSTANT); }
-0[xX]{H}+{P}{FS}?	{ count(); return(CONSTANT); }
 0[xX]{H}*"."{H}+{P}{FS}?     { count(); return(CONSTANT); }
 0[xX]{H}+"."{H}*{P}{FS}?     { count(); return(CONSTANT); }
 

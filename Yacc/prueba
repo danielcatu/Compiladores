@@ -22,7 +22,8 @@ for (i = 0; i < 10;i++)
 { 
 scanf("%d",x);
 //media+=x; // FALTA DETECTAR ESTO 
-};media /= 10;
+}
+//media /= 10;
 printf ("%f",media);
 i = 0;
 media2 = 0;
