@@ -58,16 +58,11 @@ void count(void);
 "while"			{ count(); return(WHILE); }
 "printf"		{ count(); return(PRINTF); }
 "scanf"			{ count(); return(SCANF); }
-\""%f"\"		{ count(); return(POF); }
-\""%c"\"		{ count(); return(POC); }
-\""%d"\"		{ count(); return(POD); }
-
-
 
 {L}({L}|{D})*		{ count(); return(IDENTIFIER); }
-'(\\.|[^\\'\n])+'|"(\\.|[^\\'\n])+"	{ count(); return(CHARVALUE); }
-{D}+{E}?			{ count(); return(INTVALUE); }
-{D}*"."{D}+{E}? 	{ count(); return(FLOATVALUE); }
+'(\\.|[^\\'\n])+'|\"(\\.|[^\\"\n])+\"	{ count(); return(CHARVALUE); }
+[-+]?{D}+{E}?			{ count(); return(INTVALUE); }
+[-+]?{D}*"."{D}+{E}? 	{ count(); return(FLOATVALUE); }
 
 0[xX]{H}+{P}{FS}?	{ count(); return(CONSTANT); }
 0[xX]{H}+{IS}?		{ count(); return(CONSTANT); }

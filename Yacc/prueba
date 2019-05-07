@@ -1,45 +1,14 @@
-int a;
-int b;
-/*
-
-
-habsdashd
-dabsdjkabsd
-absdkhabsd
-ajsdkbasd
-hbjhbas
-
-·333···#####¢#¢#¢@#¢@¢¬#∞¬¢∞¬¢∞¬¢∞¬
-
-
-
-
-*/
-int i,x;
-float media,media2;
-//media=0; // FALTA DETECTAR ESTO 
-for (i = 0; i < 10;i++)
-{ 
-scanf("%d",x);
-//media+=x; // FALTA DETECTAR ESTO 
+switch( i )
+{
+    case -1:
+        n++;
+        break;
+    case 0 :
+        z++;
+        break;
+    case 1 :
+        p++;
+        break;
+    default:
+    int a;
 }
-//media /= 10;
-printf ("%f",media);
-i = 0;
-media2 = 0;
-while (i < 10){
-    scanf("%d",x);
-    i++;
-    media2 = media2 + x;
-    };
-    media2 = media2/10;
-    printf ("%f",media);
-i = 0;
-media2 = 0;
-do{
-    scanf("%d",x);
-    i++;
-    media2 = media2 + x;
-    }while (i < 10);
-    media2 = media2/10;
-    printf ("%f",media);

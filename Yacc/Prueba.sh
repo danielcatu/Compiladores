@@ -7,4 +7,4 @@ rm y.tab.h &
 yacc -d Comp.y &&
 flex Comp.l &&
 cc lex.yy.c y.tab.c &&
-./a.out 
+./a.out prueba

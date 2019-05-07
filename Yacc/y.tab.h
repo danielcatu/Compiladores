@@ -107,10 +107,7 @@
      RETURN = 323,
      DO = 324,
      PRINTF = 325,
-     SCANF = 326,
-     POD = 327,
-     POF = 328,
-     POC = 329
+     SCANF = 326
    };
 #endif
 /* Tokens.  */
@@ -183,9 +180,6 @@
 #define DO 324
 #define PRINTF 325
 #define SCANF 326
-#define POD 327
-#define POF 328
-#define POC 329
 
 
 

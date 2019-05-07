@@ -11,7 +11,6 @@
 %token STRUCT UNION ENUM ELLIPSIS
 
 %token CASE DEFAULT IF ELSE SWITCH WHILE FOR GOTO CONTINUE BREAK RETURN DO PRINTF SCANF
-%token POD POF POC
 
 %start MONDA
 
@@ -22,35 +21,37 @@ extern int column;
 %%
 MONDA: MULTIMONDA | MONDA MULTIMONDA |MONDA error|;
 
-MULTIMONDA: Declaracion | Condicionals | ESfline | Declaracion SALTO {column++;};
+MULTIMONDA: Declaracion | Condicionals | ESfline | Varuse | Shiwtchline | Declaracion SALTO {column++;};
 
 Condicionals:Whileline | Ifline | Doesline | Forline;
 Whileline: WHILE '('Condicion')''{'MONDA'}';
 Ifline: IF '('Condicion')''{'MONDA'}'| IF '('Condicion')''{'MONDA'}'ELSE'{'MONDA'}';
 Doesline: DO '{'MONDA'}' WHILE '('Condicion')';
+
 Shiwtchline: SWITCH '('IDENTIFIER')''{'Caseline'}';
+Caseline: Caos DEFAULT ':' MONDA BREAKK | Caos; 
+Caos: CINT | CCHAR | CFLOAT;
+BREAKK: BREAK ';' |;
+CINT: CASE INTVALUE ':' MONDA BREAKK CINT |;
+CCHAR: CASE CHARVALUE ':' MONDA BREAKK CCHAR |;
+CFLOAT: CASE FLOATVALUE ':' MONDA BREAKK CFLOAT |;
+
 Forline: FOR '(' AUXfor IDENTIFIER '=' HYDRA ';' IDENTIFIER Cond_type HYDRA ';' IDENTIFIER ForPACK ')' '{'MONDA'}';
 HYDRA: IDENTIFIER | INTVALUE;
-CHARDRA: IDENTIFIER | CHARVALUE;
-FLOATDRA: IDENTIFIER | FLOATVALUE;
 AUXfor: INT | ;
 ForPACK: INC_OP | DEC_OP | '+' HYDRA | '-' HYDRA;
-Caseline: Caseint | CaseChar | Casefloat | DEFAULT ':' | DEFAULT ':' BREAK ';';
-Caseint: Caseint |CASE INTVALUE ':' MONDA BREAK';';
-CaseChar: Caseint |CASE CHARVALUE ':' MONDA BREAK';';
-Casefloat: Caseint |CASE FLOATVALUE ':' MONDA BREAK';';
 
-Condicion: Condicion Cond_Mod Condicion | '~(' Condicion ')' | Posco Cond_type Posco;
-Posco: IDENTIFIER | INTVALUE | CHARVALUE | FLOATVALUE;
+Condicion: Condicion Cond_Mod Condicion | '~(' Condicion ')' | Tundra Cond_type Tundra;
+Tundra: IDENTIFIER | INTVALUE | CHARVALUE | FLOATVALUE;
 Cond_type: LE_OP | GE_OP | EQ_OP | NE_OP | '<' | '>';
 Cond_Mod: OR_OP | AND_OP;
 
 ESF:PRINTF | SCANF ;
-ESfline: ESF '(' POD ',' HYDRA ')' ';' | ESF '(' POC ',' CHARDRA ')' ';' | ESF '(' POF ',' FLOATDRA ')' ';';
+ESfline: ESF '(' CHARVALUE ',' Tundra ')' ';';
 
-Varuse:IDENTIFIER IDPACK;
-IDPACK: "++" | "--" | '=' IDENTIFIER | '=' OPERAR;
-OPERAR: OPERAR Operation OPERAR | '(' OPERAR ')' ;
+Varuse:IDENTIFIER IDPACK ';';
+IDPACK: INC_OP | DEC_OP | '=' OPERAR | '=' CHARVALUE;
+OPERAR: OPERAR Operation OPERAR | '(' OPERAR ')' | INTVALUE | FLOATVALUE | IDENTIFIER ;
 Operation: '+' | '-' | '/' | '*';
 
 Declaracion: Dechar | Deint | Defloat;
@@ -70,14 +71,11 @@ Defloat3: IDENTIFIER '=' FLOATVALUE | IDENTIFIER;
 
 extern char yytext[];
 
-int main()
+int main( int argc, char *argv[] )
 {
    extern FILE *yyin, *yyout; 
-   char file_name[25];
-   printf("Enter name of a file you wish to see\n");
-   gets(file_name);
- 
-	yyin = fopen(file_name, "r"); 
+   if( argc == 2 ) {
+	yyin = fopen(argv[1], "r"); 
     if(yyin == NULL) /* open failed */{ 
      fprintf(yyout,"error");
      exit(1);
@@ -90,6 +88,14 @@ int main()
 	yyparse(); 
     fprintf(yyout,"\nTabla de Identificadores \n");
     printf("Exitoooooooo..... PARA SERVIRTE \n");
+   }
+   else if( argc > 2 ) {
+      printf("Too many arguments supplied.\n");
+   }
+   else {
+      printf("One argument expected.\n");
+   }
+
     return 0;
 }
 
