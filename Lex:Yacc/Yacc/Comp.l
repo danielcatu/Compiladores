@@ -19,7 +19,8 @@ void count(void);
 "/*"[^*/]*"*/"      { count();}//NUEVA COMENTARIO
 
 
-"auto"			{ count(); return(AUTO); }
+"#include"			{ count(); return(INCLUDE); }
+"main"			{ count(); return(MAIN); }
 "_Bool"			{ count(); return(BOOL); }
 "break"			{ count(); return(BREAK); }
 "case"			{ count(); return(CASE); }
@@ -41,8 +42,6 @@ void count(void);
 "inline"		{ count(); return(INLINE); }
 "int"			{ count(); return(INT); }
 "long"			{ count(); return(LONG); }
-"register"		{ count(); return(REGISTER); }
-"restrict"		{ count(); return(RESTRICT); }
 "return"		{ count(); return(RETURN); }
 "short"			{ count(); return(SHORT); }
 "signed"		{ count(); return(SIGNED); }
@@ -59,20 +58,14 @@ void count(void);
 "printf"		{ count(); return(PRINTF); }
 "scanf"			{ count(); return(SCANF); }
 
+
 {L}({L}|{D})*		{ count(); return(IDENTIFIER); }
 '(\\.|[^\\'\n])+'|\"(\\.|[^\\"\n])+\"	{ count(); return(CHARVALUE); }
 [-+]?{D}+{E}?			{ count(); return(INTVALUE); }
 [-+]?{D}*"."{D}+{E}? 	{ count(); return(FLOATVALUE); }
 
-0[xX]{H}+{P}{FS}?	{ count(); return(CONSTANT); }
-0[xX]{H}+{IS}?		{ count(); return(CONSTANT); }
-0[0-7]*{IS}?		{ count(); return(CONSTANT); }
-[1-9]{D}*{IS}?		{ count(); return(CONSTANT); }
-0[xX]{H}*"."{H}+{P}{FS}?     { count(); return(CONSTANT); }
-0[xX]{H}+"."{H}*{P}{FS}?     { count(); return(CONSTANT); }
 
-
-L?\"(\\.|[^\\"\n])*\"	{ count(); return(STRING_LITERAL); }
+\<(\\.|[^\\"\n])*\>	{ count(); return(LIBRERIA); }
 
 "..."			{ count(); return(ELLIPSIS); }
 ">>="			{ count(); return(RIGHT_ASSIGN); }
@@ -96,13 +89,14 @@ L?\"(\\.|[^\\"\n])*\"	{ count(); return(STRING_LITERAL); }
 ">="			{ count(); return(GE_OP); }
 "=="			{ count(); return(EQ_OP); }
 "!="			{ count(); return(NE_OP); }
-";"			{ count(); return(';'); }
+";"				{ count(); return(';'); }
 ("{"|"<%")		{ count(); return('{'); }
 ("}"|"%>")		{ count(); return('}'); }
 ","			{ count(); return(','); }
 ":"			{ count(); return(':'); }
 "="			{ count(); return('='); }
 "("			{ count(); return('('); }
+"~(" 		{count(); return(NEGA);}
 ")"			{ count(); return(')'); }
 ("["|"<:")		{ count(); return('['); }
 ("]"|":>")		{ count(); return(']'); }

@@ -68,46 +68,47 @@
      TYPEDEF = 284,
      EXTERN = 285,
      STATIC = 286,
-     AUTO = 287,
-     REGISTER = 288,
+     LIBRERIA = 287,
+     NEGA = 288,
      INLINE = 289,
-     RESTRICT = 290,
-     CHAR = 291,
-     SHORT = 292,
-     INT = 293,
-     LONG = 294,
-     SIGNED = 295,
-     UNSIGNED = 296,
-     FLOAT = 297,
-     DOUBLE = 298,
-     CONST = 299,
-     VOLATILE = 300,
-     VOID = 301,
-     CHARVALUE = 302,
-     FLOATVALUE = 303,
-     INTVALUE = 304,
-     BOOL = 305,
-     COMPLEX = 306,
-     IMAGINARY = 307,
-     SALTO = 308,
-     STRUCT = 309,
-     UNION = 310,
-     ENUM = 311,
-     ELLIPSIS = 312,
-     CASE = 313,
-     DEFAULT = 314,
-     IF = 315,
-     ELSE = 316,
-     SWITCH = 317,
-     WHILE = 318,
-     FOR = 319,
-     GOTO = 320,
-     CONTINUE = 321,
-     BREAK = 322,
-     RETURN = 323,
-     DO = 324,
-     PRINTF = 325,
-     SCANF = 326
+     MAIN = 290,
+     INCLUDE = 291,
+     CHAR = 292,
+     SHORT = 293,
+     INT = 294,
+     LONG = 295,
+     SIGNED = 296,
+     UNSIGNED = 297,
+     FLOAT = 298,
+     DOUBLE = 299,
+     CONST = 300,
+     VOLATILE = 301,
+     VOID = 302,
+     CHARVALUE = 303,
+     FLOATVALUE = 304,
+     INTVALUE = 305,
+     BOOL = 306,
+     COMPLEX = 307,
+     IMAGINARY = 308,
+     SALTO = 309,
+     STRUCT = 310,
+     UNION = 311,
+     ENUM = 312,
+     ELLIPSIS = 313,
+     CASE = 314,
+     DEFAULT = 315,
+     IF = 316,
+     ELSE = 317,
+     SWITCH = 318,
+     WHILE = 319,
+     FOR = 320,
+     GOTO = 321,
+     CONTINUE = 322,
+     BREAK = 323,
+     RETURN = 324,
+     DO = 325,
+     PRINTF = 326,
+     SCANF = 327
    };
 #endif
 /* Tokens.  */
@@ -140,46 +141,47 @@
 #define TYPEDEF 284
 #define EXTERN 285
 #define STATIC 286
-#define AUTO 287
-#define REGISTER 288
+#define LIBRERIA 287
+#define NEGA 288
 #define INLINE 289
-#define RESTRICT 290
-#define CHAR 291
-#define SHORT 292
-#define INT 293
-#define LONG 294
-#define SIGNED 295
-#define UNSIGNED 296
-#define FLOAT 297
-#define DOUBLE 298
-#define CONST 299
-#define VOLATILE 300
-#define VOID 301
-#define CHARVALUE 302
-#define FLOATVALUE 303
-#define INTVALUE 304
-#define BOOL 305
-#define COMPLEX 306
-#define IMAGINARY 307
-#define SALTO 308
-#define STRUCT 309
-#define UNION 310
-#define ENUM 311
-#define ELLIPSIS 312
-#define CASE 313
-#define DEFAULT 314
-#define IF 315
-#define ELSE 316
-#define SWITCH 317
-#define WHILE 318
-#define FOR 319
-#define GOTO 320
-#define CONTINUE 321
-#define BREAK 322
-#define RETURN 323
-#define DO 324
-#define PRINTF 325
-#define SCANF 326
+#define MAIN 290
+#define INCLUDE 291
+#define CHAR 292
+#define SHORT 293
+#define INT 294
+#define LONG 295
+#define SIGNED 296
+#define UNSIGNED 297
+#define FLOAT 298
+#define DOUBLE 299
+#define CONST 300
+#define VOLATILE 301
+#define VOID 302
+#define CHARVALUE 303
+#define FLOATVALUE 304
+#define INTVALUE 305
+#define BOOL 306
+#define COMPLEX 307
+#define IMAGINARY 308
+#define SALTO 309
+#define STRUCT 310
+#define UNION 311
+#define ENUM 312
+#define ELLIPSIS 313
+#define CASE 314
+#define DEFAULT 315
+#define IF 316
+#define ELSE 317
+#define SWITCH 318
+#define WHILE 319
+#define FOR 320
+#define GOTO 321
+#define CONTINUE 322
+#define BREAK 323
+#define RETURN 324
+#define DO 325
+#define PRINTF 326
+#define SCANF 327
 
 
 
