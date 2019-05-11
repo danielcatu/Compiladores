@@ -20,7 +20,7 @@ case 2:
 for(i = 2;i >= 0;-)
 {
   scanf("%d",jaime);
-  printf("%d",i);a
+  printf("%d",i);
 }
 
 
