@@ -1,7 +1,7 @@
 #NOPOS{\ / : * ? " < > | }
 #! /usr/bin/perl
 $unidad='[a-zA-Z]';
-$Black='[^(\\)/:\*?"<>\|]';
+$Black='[^\/:\*?"<>\|)][^\]';
 $loco='[^(\\)/:\*?"<>\|][^\s]';
 print "Ingrese la dirección \n";
 my $dir=<stdin>;  
@@ -12,5 +12,12 @@ if($dir =~ /^$unidad\:((\\\"$Black+\")|(\\$loco+))*$/){
       print "NoReconocido\n";
 }  
 #c:\Windows\System32\Dri/vers\etc\hosts.pete
-#c:\Windows\System32\"Drive /rs"\etc\hosts.pete
-
+#c:\Windows\System32\"Drive rs"\etc\hosts.pete
+#c:\Windows\System32\"Driv/e rs"\etc\hosts.pete
+#c:\Windows\System32\"Driv\e rs"\etc\hosts.pete
+#c:\Windows\System32\"Driv:e rs"\etc\hosts.pete
+#c:\Windows\System32\"Driv*e rs"\etc\hosts.pete
+#c:\Windows\System32\"Driv?e rs"\etc\hosts.pete
+#c:\Windows\System32\"Driv<e rs"\etc\hosts.pete
+#c:\Windows\System32\"Driv>e rs"\etc\hosts.pete
+#c:\W
